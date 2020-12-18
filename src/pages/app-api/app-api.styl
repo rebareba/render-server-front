@@ -1,0 +1,210 @@
+.sidebar-test {
+  background-color: #fff
+  height: calc(100vh - 48px)
+  overflow: hidden
+  width: 300px
+  border: 1px solid #ececec
+  border-top: none
+  border-bottom: none
+
+  .sidebar-tree {
+    height: calc(100vh - 98px)
+    overflow-y: scroll
+    overflow-x: hidden
+  }
+
+  .ant-menu {
+    border: none
+  }
+
+  .sidebar-test-search {
+    width: 100%;
+    height: 50px
+    line-height 50px
+    box-sizing border-box
+    text-align: center;
+    border-bottom: 1px solid #ececec;
+    position: relative;
+    z-index: 2;
+    input {
+      height: 28px;
+      font-size: 12px;
+    }
+    .no-data {
+      margin-top: 10px;
+      margin-bottom: -10px;
+      color: #f04134;
+    }
+  }
+}
+
+.test-case {
+  width: 32px
+  height: 100%
+  background: #f8f8f8
+  border-left: 1px solid #dbdbdb
+  position: relative
+  //margin-top: 1px
+
+  .top-block {
+    //position: absolute;
+    //top: 0;
+    //right: 0
+    //left: -1px;
+    //height: 88px;
+    width: 32px;
+    background: #f8f8f8;
+    //border-left: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    text-align: center;
+    cursor: pointer;
+    z-index: 10;
+
+    span {
+      color: rgba(0,0,0,.65)
+      font-size: 12px
+      vertical-align: middle
+      line-height: normal
+      writing-mode: tb-rl
+      padding-top: 14px
+      letter-spacing: 4px
+    }
+  }
+  .params-active {
+    //background: #fff
+    border-left: 1px solid #dbdbdb;
+    //border-bottom: 1px solid #dbdbdb
+    //border-left: none
+  }
+  .param-container {
+    //position: absolute;
+    display: none
+    width: 0;
+    height: 100%;
+    border-right: none;
+    //background: #fff;
+    background: #f7f7f7
+    overflow-y: auto;
+    transition: width .15s
+    padding: 12px
+  }
+  .param-container.param-container-show {
+    display: block
+    width: 360px;
+    //border: 1px solid #dbdbdb;
+    border-right: none;
+  }
+
+  .ant-list-item {
+    padding-left: 12px
+    padding-right: 4px
+  }
+  .ant-list-item-action > li {
+    padding: 0
+  }
+  .test-case-item {
+    display: inline-block
+    cursor: pointer
+  }
+  .test-cae-item:hover {
+    color: #0078ff
+  }
+}
+.test-case.show-case {
+  width: 360px;
+  border-right: none;
+  flex-direction: row-reverse
+}
+
+
+.test-content {
+  padding: 16px
+  background-color: #fff
+  //width: 100%
+  //max-width: calc(100% - 32px)
+  //min-width: calc(100% - 360px)
+  height: calc(100vh - 48px)
+  overflow-y: scroll
+
+  .test-name {
+    margin-bottom: 20px
+  }
+
+  .copyIcon {
+    margin-right: 16px
+    color: rgba(0,0,0,0.6)
+    cursor: pointer
+    &:hover {
+      color: #40a9ff
+    }
+  }
+
+  .test-head {
+    margin-bottom: 20px
+
+    .ant-input-group-addon {
+      padding: 4px 20px
+    }
+
+    .ant-input-disabled {
+      background-color: #eee
+      color: rgba(0,0,0, 0.75)
+    }
+  }
+
+  .test-headers,
+  .test-query,
+  .test-param {
+    margin-top: 24px
+  }
+
+  .test-result {
+    margin-top: 30px
+
+    pre {
+      //word-break: break-all
+      //white-space: normal
+    }
+  }
+}
+
+table.test-param-table {
+  width: 100%
+  border：0
+
+  thead th {
+    background: #f7f7f7
+    border: 1px solid #e9e9e9
+    padding: 6px 16px
+    text-align: left
+  }
+  tbody td {
+    border: 1px solid #e9e9e9
+    padding: 6px 16px
+    text-align: left
+  }
+
+  .ant-form-explain {
+    display: none
+  }
+  .ant-form-item {
+    margin-bottom: 0 !important
+  }
+
+}
+
+.ant-form-item-required:before {
+    display: inline-block
+    margin-right: 4px
+    content: "*"
+    font-family: SimSun
+    line-height: 1
+    font-size: 14px
+    color: #fc6154
+}
+table.test-param-table .ant-form-item {
+    margin-bottom: 0!important;
+}
+.edit-table .ant-legacy-form-item {
+    margin-bottom: 0!important;
+}

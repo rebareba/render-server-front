@@ -1,0 +1,83 @@
+.box-item{
+  border: 1px solid #E9E9E9
+  border-radius: 4px
+  overflow: hidden
+  margin-bottom: 24px
+
+  .box-head {
+    height: 44px
+    line-height: 44px
+    background: #F7F7F7
+    border-bottom: 1px solid #e9e9e9
+    padding: 0 20px
+    position: relative
+
+    .box-title {
+      font-size: 14px
+      color: rgba(0,0,0,.65)
+    }
+      
+    .box-title-extra {
+      float: right
+      text-align: right
+      margin-left: auto
+    }  
+  }
+  .box-content{
+    padding: 20px
+  }
+  .box-error {
+    color: #f04134
+    position: absolute
+    bottom: 10px
+  }
+
+  .box-content.table-type {
+    padding: 0
+
+    .ant-table-small {
+      border: 0
+    }
+
+    .ant-table-small.ant-table-bordered .ant-table-content {
+      border: none
+    }
+
+    table {
+      padding: 0
+    }
+  }
+
+}
+
+.box-item.error-status {
+  border: 1px solid #f04134
+}
+
+.filed-item{
+  height: 35px
+  line-height: 35px
+  width: 100%
+  overflow: hidden
+  display: flex
+
+  color: rgba(0,0,0,.43)
+  .value-box{
+    display: inline-block
+    max-width: calc(100% - 120px)
+    overflow: hidden
+    text-overflow: ellipsis
+    //white-space: wrap
+    //word-break: break-all
+    vertical-align: middle
+    padding-left: 6px
+    color: rgba(0,0,0,.75)
+    letter-spacing: 1px
+  }
+
+  .box-item-label{
+    width: 130px
+    text-align: left
+    display: inline-block
+  }
+}

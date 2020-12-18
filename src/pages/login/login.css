@@ -1,0 +1,26 @@
+.page-login {
+    height: 100%;
+    padding: 24px;
+    min-width: 1200px;
+    min-height: 700px;
+}
+.page-login .container {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    padding: 36px;
+    margin:-160px 0 0 -160px;
+    z-index: 3;
+    -webkit-box-shadow: 0 0 100px rgba(0,0,0,.08);
+    box-shadow: 0 0 100px rgba(0,0,0,.08);
+}
+
+.page-login .login-main {
+    background-color: #fff;
+    border-radius: 5px;
+}
+.page-login .btn {
+     width: 100%;
+ }
