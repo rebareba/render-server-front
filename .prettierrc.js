@@ -10,4 +10,5 @@ module.exports = {
   // "jsxBracketSameLine": true,
   // "arrowParens": "avoid",
   // "insertPragma": true,
+  "endOfLine": "auto", // window和mac的文件最后一行默认换行不一样问题
 };

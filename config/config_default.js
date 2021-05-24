@@ -4,12 +4,10 @@ module.exports = {
   // 名称
   projectName: pkg.name,
   version: pkg.version,
-
   // npm run build-cdn 打包的 publicPath 路径
-  cdnPrefix: `//cdn.xxxx.com/${pkg.name}/${pkg.version}/`,
+  cdnPrefix: `//cdn.xxx.com/${pkg.name}/${pkg.version}/`,
   // npm run build 打包的 publicPath 路径
   versionPrefix: `/${pkg.name}/${pkg.version}/`,
-  // devServer.port
   port: 3333,
   // 接口匹配转发 devServer.proxy
   proxy: {
@@ -19,12 +17,18 @@ module.exports = {
       secure: true // 支持 https
     }
   },
+  // webpack 打包忽略配置 要在index.html引入public资源
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
+  // 多入口情况的重定向
   rewrites: [
     // {
     //   from: /^\/admin/, to: '/admin.html'
     // },
   ],
-  // 这个配置 config/conf.json中的数据
+  // 前端代码配置 动态生成config/conf.json中的数据， 也是index.html模板的数据
   conf: {
     dev: {
       title: "前端项目部署服务",
@@ -33,14 +37,20 @@ module.exports = {
       debug: true,
       // mock数据模拟延迟
       delay: 500,
-      mock: {}
+      mock: {},
+      // 指定public资源的域名 是否是cdn的资源
+      publicHost: ''
     },
     build: {
       title: "前端项目部署服务",
       pathPrefix: "/render-server",
       apiPrefix: "/render-server/api",
       debug: false,
-      mock: {}
+      // mock数据模拟延迟
+      delay: 100,
+      mock: {},
+      // 指定public资源的域名 是否是cdn的资源
+      publicHost:''
     }
   }
 };

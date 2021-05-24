@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2020-07-06 14:20:08
+ * @LastEditTime: 2020-11-09 20:35:44
  * @Description: node 读取dist 中的文件进行压缩打包
  */
 

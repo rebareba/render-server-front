@@ -8,5 +8,4 @@ public
 test.js
 config
 webpack.config.js
-scripts
-
+scripts/*

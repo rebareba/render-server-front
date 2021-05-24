@@ -3,7 +3,6 @@
 .DS_store
 *.log
 Untitled
-.vscode
 dist
 .nyc_output
 test.js
@@ -12,3 +11,4 @@ config/config.js
 config/conf.json
 mock.json
 coverage
+api-cache
