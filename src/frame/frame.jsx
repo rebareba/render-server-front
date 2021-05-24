@@ -5,7 +5,7 @@ import {observer, inject} from 'mobx-react'
 import {Link, useLocation} from 'react-router-dom'
 import {config} from '@utils'
 
-import logo from '@assets/icon/logo.svg'
+import logo from '@assets/svg/logo.svg'
 
 const {Header, Content, Footer} = Layout
 
@@ -66,7 +66,7 @@ const Frame = ({globalStore, children}) => {
           </div>
         </Header>
         <Content className="pt10">{children}</Content>
-        <Footer style={{textAlign: 'center'}}>x</Footer>
+        <Footer style={{textAlign: 'center'}} />
       </Layout>
     )
   }

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
 import {toJS} from 'mobx'
 import {observer, inject} from 'mobx-react'
-import {Table, Icon, Button, Modal, Spin, Form, Input} from 'antd'
+import {Table, Button, Modal, Spin, Form, Input} from 'antd'
+import {EditOutlined} from '@ant-design/icons'
 import InfoBox, {BoxItem} from '@components/component-info-box'
 import _ from 'lodash'
 import AppCategoryModal from './app-modal-category'
@@ -139,7 +140,7 @@ const AppContent = ({store}) => {
             title="接口分类信息"
             extra={
               <Button type="ghost" size="small" onClick={() => handleEdit('appCateVisible')}>
-                <Icon type="edit" /> 修改
+                <EditOutlined /> 修改
               </Button>
             }
             type="table"
@@ -150,7 +151,7 @@ const AppContent = ({store}) => {
             title="接口测试主机配置"
             extra={
               <Button type="ghost" size="small" onClick={() => handleEdit('appHostVisible')}>
-                <Icon type="edit" /> 修改
+                <EditOutlined /> 修改
               </Button>
             }
             type="table"
@@ -161,7 +162,7 @@ const AppContent = ({store}) => {
             title="接口路由前缀配置"
             extra={
               <Button type="ghost" size="small" onClick={() => handleEdit('apiPrefixVisible')}>
-                <Icon type="edit" /> 新增
+                <EditOutlined /> 新增
               </Button>
             }
             type="table"

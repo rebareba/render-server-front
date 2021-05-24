@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2021-05-24 14:15:45
+ * @LastEditTime: 2021-05-24 17:52:49
  * @Description:
  */
 
@@ -15,7 +15,7 @@ const apis = {
   },
 }
 
-const io = createIo(apis, 'home')
+const io = createIo(apis, 'about')
 
 class AboutStore {
   about = ''

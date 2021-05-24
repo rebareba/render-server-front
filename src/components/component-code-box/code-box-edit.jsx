@@ -7,7 +7,7 @@ const CodeBoxEdit = ({value, width, onChange}) => {
 
   useEffect(() => {
     if (codeRef) {
-      const editor = CodeMirror.fromTextArea(codeRef, {
+      const editor = CodeMirror.fromTextArea(codeRef.current, {
         lineNumbers: true, // 是否显示行号
         mode: {name: 'javascript', json: true}, // 默认脚本编码
         lineWrapping: false, // 是否强制换行

@@ -57,20 +57,25 @@ const Deploy = ({children, rootPath, onUpload}) => {
           if (!file.webkitRelativePath.startsWith(rootPath) && rootPath !== 'init') {
             return Promise.reject()
           }
+          Object.defineProperties(file, {
+            name: {
+              value: file.webkitRelativePath,
+            },
+          })
           allFilsCount.current = fileList.length
           return Promise.resolve()
         }}
         onChange={(info) => {
           setFileList(info.fileList)
         }}
-        transformFile={(file) => {
-          Object.defineProperties(file, {
-            name: {
-              value: file.webkitRelativePath,
-            },
-          })
-          return file
-        }}
+        // transformFile={(file) => {
+        //   Object.defineProperties(file, {
+        //     name: {
+        //       value: file.webkitRelativePath,
+        //     },
+        //   })
+        //   return file
+        // }}
         showUploadList={false}
       >
         {children}

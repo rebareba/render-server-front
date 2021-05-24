@@ -1,4 +1,4 @@
-import {action, runInAction} from 'mobx'
+import {action, makeAutoObservable, runInAction} from 'mobx'
 import {createIo} from '@common/create-io'
 import {message} from 'antd'
 import _ from 'lodash'
@@ -9,56 +9,60 @@ import isPlainObject from 'lodash/isPlainObject'
 import {history, config, storage} from '@utils'
 // 用户登录相关接口配置
 const apis = {
+  list: {
+    method: 'GET',
+    url: 'list',
+  },
   // 1. 获取应用及所有api列表
   getAppApiList: {
     method: 'GET',
-    url: '/app/:appKey',
+    url: 'app/:appKey',
   },
   // 2. 更新应用配置 包含hosts apiPrefix categoies
   updateApp: {
     method: 'PUT',
-    url: '/app/:appKey',
+    url: 'app/:appKey',
   },
   // 3. 新增接口
   addApi: {
     method: 'POST',
-    url: '/app/:appKey',
+    url: 'app/:appKey',
   },
 
   // 4. 获取单个API信息
   getApiDetail: {
-    url: '/app/:appKey/api/:apiId',
+    url: 'app/:appKey/api/:apiId',
   },
   // 5. 更新接口
   updateApi: {
     method: 'PUT',
-    url: '/app/:appKey/api/:apiId',
+    url: 'app/:appKey/api/:apiId',
   },
 
   // 6. 删除API
   deleteApi: {
     method: 'DELETE',
-    url: '/app/:appKey/api/:apiId',
+    url: 'app/:appKey/api/:apiId',
   },
 
   // 7. 获取接口的测试用例
   getTestCaseList: {
-    url: '/app/:appKey/api/:apiId/case',
+    url: 'app/:appKey/api/:apiId/case',
   },
   // 8. 获取接口的测试用例
   saveTestCase: {
     method: 'POST',
-    url: '/app/:appKey/api/:apiId/case',
+    url: 'app/:appKey/api/:apiId/case',
   },
   // 9. 获取接口的测试用例
   deleteCase: {
     method: 'DELETE',
-    url: '/app/:appKey/api/:apiId/case/:caseId',
+    url: 'app/:appKey/api/:apiId/case/:caseId',
   },
   // 10. 测试接口
   testApi: {
     method: 'POST',
-    url: '/test',
+    url: 'test',
   },
 }
 const io = createIo(apis, 'api')
@@ -156,6 +160,7 @@ class ApiTestStore {
         }
       } catch (err) {}
     }
+    makeAutoObservable(this)
   }
 
   // 处理数据变化的页面响应
@@ -164,7 +169,7 @@ class ApiTestStore {
   }
 
   // 获取配置列表
-  async getList(refresh = false) {
+  getList = async (refresh = false) => {
     if (this.appConfigList.length > 0 && !refresh) return
     const {success, content} = await io.list()
     if (!success) return
@@ -176,12 +181,12 @@ class ApiTestStore {
   /**
    * 获取当前服务下所有API列表信息
    */
-  async getAppApiList() {
+  getAppApiList = async (appKey) => {
     this.isLoading = true
     const {
       success,
       content: {name, hosts, categories, apiPrefiies, apis, ctime, mtime},
-    } = await io.getAppApiList({':appKey': this.appKey})
+    } = await io.getAppApiList({':appKey': appKey})
     this.isLoading = false
     if (!success) return
     runInAction(() => {
@@ -231,7 +236,7 @@ class ApiTestStore {
     this.treeData.replace(_.values(obj))
   }
 
-  async addServiceCategory(value) {
+  addServiceCategory = async (value) => {
     if (this.appInfo.categories.some((item) => item.cateCode === value.cateCode)) {
       return message.warn('该分类Code已经存在')
     }
@@ -252,7 +257,7 @@ class ApiTestStore {
   }
 
   // 编辑类目
-  async editServiceCategory(params, cateCode) {
+  editServiceCategory = async (params, cateCode) => {
     this.appInfo.categories.forEach((item) => {
       if (item.cateCode === cateCode) {
         item.name = params.name
@@ -271,7 +276,7 @@ class ApiTestStore {
   }
 
   // 删除
-  async deleteServiceCategory(cateCode) {
+  deleteServiceCategory = async (cateCode) => {
     _.remove(this.appInfo.categories, (item) => item.cateCode === cateCode)
     const {success, content} = await io.updateApp({
       ':appKey': this.appKey,
@@ -284,7 +289,7 @@ class ApiTestStore {
     })
   }
 
-  async addServiceHost(value) {
+  addServiceHost = async (value) => {
     if (this.appInfo.hosts.some((item) => item.host === value.host)) {
       return message.warn('该主机Host已经存在')
     }
@@ -305,7 +310,7 @@ class ApiTestStore {
   }
 
   // 编辑类目
-  async editServiceHost(value, index) {
+  editServiceHost = async (value, index) => {
     if (this.appInfo.hosts.some((item, idx) => item.host === value.host && index !== idx)) {
       return message.warn('该主机Host已经存在')
     }
@@ -326,7 +331,7 @@ class ApiTestStore {
   }
 
   // 删除应用配置的主机
-  async deleteServiceHost(host) {
+  deleteServiceHost = async (host) => {
     _.remove(this.appInfo.hosts, (item) => item.host === host)
     const {success, content} = await io.updateApp({
       ':appKey': this.appKey,
@@ -339,7 +344,7 @@ class ApiTestStore {
     })
   }
 
-  async editServiceApiPrefix(newApiPrefiies) {
+  editServiceApiPrefix = async (newApiPrefiies) => {
     const {success, content} = await io.updateApp({
       ':appKey': this.appKey,
       apiPrefiies: newApiPrefiies,
@@ -352,7 +357,7 @@ class ApiTestStore {
   }
 
   /** 获取单个API信息 */
-  async getApiDetail() {
+  getApiDetail = async () => {
     const {success, content} = await io.getApiDetail({':appKey': this.appKey, ':apiId': this.apiId})
     if (!success) return
     runInAction(() => {
@@ -392,7 +397,7 @@ class ApiTestStore {
   }
 
   // 获取测试用例列表
-  async getTestCaseList() {
+  getTestCaseList = async () => {
     this.caseListLoading = true
     const {content: caseList, success} = await io.getTestCaseList({':appKey': this.appKey, ':apiId': this.apiId})
     if (!success) return
@@ -403,7 +408,7 @@ class ApiTestStore {
   }
 
   // 保存测试用例
-  async saveTestCase(name) {
+  saveTestCase = async (name) => {
     const caseData = {
       ':appKey': this.appKey,
       ':apiId': this.apiId,
@@ -426,7 +431,7 @@ class ApiTestStore {
   }
 
   // 删除测试用例
-  async deleteCase(caseId) {
+  deleteCase = async (caseId) => {
     this.caseListLoading = true
     const {success, content} = await io.deleteCase({':appKey': this.appKey, ':apiId': this.apiId, ':caseId': caseId})
     this.caseListLoading = false
@@ -437,7 +442,7 @@ class ApiTestStore {
   }
 
   // 切换测试用例
-  async useCase(caseId) {
+  useCase = async (caseId) => {
     const caseData = this.caseList.find((item) => item.caseId === caseId)
     if (!caseData) return message.warn('用例数据没有找到')
     this.header = _.cloneDeep(caseData.params.header)
@@ -453,7 +458,7 @@ class ApiTestStore {
   }
 
   /** 测试接口信息 */
-  async testApi() {
+  testApi = async () => {
     const formatData = this.formatParams()
     if (!formatData) return
     this.isLoading = true
@@ -540,7 +545,7 @@ class ApiTestStore {
     return {query, body, headers, path}
   }
 
-  async saveApi(apiData) {
+  saveApi = async (apiData) => {
     this.isLoading = true
     apiData[':appKey'] = this.appKey
     let retData
@@ -557,7 +562,7 @@ class ApiTestStore {
     history.push(`${config.pathPrefix}/app/${this.appKey}/apis/${retData.content.apiId}`)
   }
 
-  @action.bound async deleteApi() {
+  deleteApi = async () => {
     const {success} = await io.deleteApi({':appKey': this.appKey, ':apiId': this.apiId})
     if (success) {
       message.success('删除成功')
@@ -617,26 +622,56 @@ class ApiTestStore {
 
   setValue(key, value) {
     switch (key) {
-      case 'loading':
-        this.loading = value
+      case 'appConfigList':
+        this.appConfigList = value
         break
-      case 'readVisible':
-        this.readVisible = value
+      case 'appInfo':
+        this.appInfo = value
         break
-      case 'appConfig':
-        this.appConfig = value
+      case 'apiId':
+        this.apiId = value
         break
-      case 'editVisible':
-        this.editVisible = value
+      case 'appKey':
+        this.appKey = value
         break
-      case 'value':
-        this.value = value
+      case 'editApi':
+        this.editApi = value
         break
-      case 'title':
-        this.title = value
+      case 'appCateVisible':
+        this.appCateVisible = value
         break
-      case 'add':
-        this.appConaddfig = value
+      case 'appHostVisible':
+        this.appHostVisible = value
+        break
+      case 'treeData':
+        this.treeData = value
+        break
+      case 'apiDetail':
+        this.apiDetail = value
+        break
+      case 'newApiData':
+        this.newApiData = value
+        break
+      case 'apiPrefix':
+        this.apiPrefix = value
+        break
+      case 'host':
+        this.host = value
+        break
+      case 'defaultBody':
+        this.defaultBody = value
+        break
+      case 'body':
+        this.body = value
+        break
+      case 'method':
+        this.method = value
+        break
+      case 'query':
+        this.query = value
+        break
+      case 'param':
+        this.param = value
         break
       default:
     }

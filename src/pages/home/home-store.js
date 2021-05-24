@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2021-05-24 14:11:20
+ * @LastEditTime: 2021-05-24 20:25:28
  * @Description: 配置的处理， 新建项目这些
  */
 import {createIo} from '@common/create-io'
@@ -61,7 +61,7 @@ class HomeStore {
 
   editVisible = false
 
-  appConfigList
+  appConfigList = []
 
   appConfig = {
     config: {},
@@ -69,11 +69,12 @@ class HomeStore {
     permission: 0,
   }
 
+  // 新建配置存储的值
   value = ''
 
   title = ''
 
-  add = false
+  isAdd = false
 
   constructor() {
     makeAutoObservable(this)
@@ -89,7 +90,7 @@ class HomeStore {
   }
 
   // 获取配置列表
-  async getList(refresh = false) {
+  getList = async (refresh = false) => {
     if (this.appConfigList.length > 0 && !refresh) return
     const {success, content} = await io.list()
     if (!success) return
@@ -115,24 +116,22 @@ class HomeStore {
   // 编辑配置
   async edit(key, config) {
     log('edit key', key)
-    const {success, message: msg} = await io.edit({key, config})
+    const {success} = await io.edit({key, config})
     if (success) {
       message.success('编辑成功')
+      this.value = ''
       setTimeout(() => this.getList(true), 500)
-    } else {
-      message.warning(msg)
     }
     return success
   }
   // 添加配置
 
   async add(config) {
-    const {success, message: msg} = await io.add(config)
+    const {success} = await io.add(config)
     if (success) {
       message.success('新建成功')
+      this.value = ''
       setTimeout(() => this.getList(true), 500)
-    } else {
-      message.warning(msg)
     }
     return success
   }
@@ -168,8 +167,8 @@ class HomeStore {
       case 'title':
         this.title = value
         break
-      case 'add':
-        this.appConaddfig = value
+      case 'isAdd':
+        this.isAdd = value
         break
       default:
     }

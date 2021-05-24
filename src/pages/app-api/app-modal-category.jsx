@@ -10,7 +10,6 @@ const AppCategoryModal = ({store}) => {
   const [form] = Form.useForm()
 
   useEffect(() => {
-    if (form) form.resetFields()
     const disposer = autorun(() => {
       if (store.visible) {
         store.getServiceCategoryList()

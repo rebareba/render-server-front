@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Menu, Input, Button} from 'antd'
 import {FolderOutlined} from '@ant-design/icons'
 import {action, observable, computed, toJS} from 'mobx'
@@ -10,19 +10,16 @@ import {Link} from 'react-router-dom'
 const {SubMenu} = Menu
 const {Search} = Input
 
-@observer
-class Sidebar extends React.Component {
-  @observable store = this.props.store
-
+const Sidebar = ({store}) => {
   /** 搜索列表 */
-  @observable searchResult = []
+  const [searchResult, setSearchResult] = useState([])
 
   /** 搜索关键词 */
-  @observable searchKey = ''
+  const [searchKey, setSearchKey] = useState('')
 
-  @computed get openKeys() {
-    if (this.store.list.length) {
-      const api = this.store.apiList.find((item) => item.apiId === this.store.apiId)
+  const openKeys = () => {
+    if (store.list.length) {
+      const api = store.apiList.find((item) => item.apiId === store.apiId)
       if (api) {
         return [api.cateCode]
       }
@@ -30,24 +27,24 @@ class Sidebar extends React.Component {
     return []
   }
 
-  @action.bound handleSearch(e) {
-    this.searchKey = e.target.value
-    if (this.searchKey) {
-      const results = this.store.list
+  const handleSearch = (e) => {
+    setSearchKey(e.target.value)
+    if (searchKey) {
+      const results = store.list
         .filter((item) => item.type !== 'folder')
-        .filter((item) => item.title.toLowerCase().includes(this.searchKey.toLowerCase()))
-
-      this.searchResult.replace(results)
+        .filter((item) => item.title.toLowerCase().includes(searchKey.toLowerCase()))
+      setSearchResult(results)
     } else {
-      this.searchResult.replace([])
+      searchResult.replace([])
+      setSearchResult([])
     }
   }
 
-  @action.bound handleSelect(e) {
-    history.push(`${config.pathPrefix}/app/${this.store.appKey}/apis/${e.key}`)
+  const handleSelect = (e) => {
+    history.push(`${config.pathPrefix}/app/${store.appKey}/apis/${e.key}`)
   }
 
-  renderTree(treeData) {
+  function renderTree(treeData) {
     const arr = []
     treeData.forEach((item) => {
       if (item.children && item.children.length) {
@@ -74,40 +71,33 @@ class Sidebar extends React.Component {
     return arr
   }
 
-  render() {
-    const treeData = this.searchKey ? this.searchResult : this.store.treeData
-    let {appInfo} = this.store
-    appInfo = toJS(appInfo)
-    return (
-      <div className="sidebar-test">
-        <div className="fs20 fbh p6">
-          <div style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}} className="fb1">
-            <Link to={`${config.pathPrefix}/app/${this.store.appKey}/apis/index`}>{appInfo.name}</Link>
-          </div>
-          <Link to={`${config.pathPrefix}/app/${this.store.appKey}/apis/new`}>
-            <Button type="primary" className="m4">
-              新建
-            </Button>
-          </Link>
+  const treeData = searchKey ? searchResult : store.treeData
+  const {appInfo, appKey} = store
+  const appInfoData = toJS(appInfo)
+  return (
+    <div className="sidebar-test">
+      <div className="fs20 fbh p6">
+        <div style={{overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis'}} className="fb1">
+          <Link to={`${config.pathPrefix}/app/${appKey}/apis/index`}>{appInfoData.name}</Link>
         </div>
-        <div className="sidebar-test-search">
-          <Search style={{width: 240}} placeholder="请输入API名称关键字" onChange={this.handleSearch} />
-        </div>
-        <div className="sidebar-tree">
-          {this.store.treeData.length ? (
-            <Menu
-              mode="inline"
-              onSelect={this.handleSelect}
-              selectedKeys={[this.store.apiId]}
-              defaultOpenKeys={this.openKeys}
-            >
-              {this.renderTree(treeData)}
-            </Menu>
-          ) : null}
-        </div>
+        <Link to={`${config.pathPrefix}/app/${appKey}/apis/new`}>
+          <Button type="primary" className="m4">
+            新建
+          </Button>
+        </Link>
       </div>
-    )
-  }
+      <div className="sidebar-test-search">
+        <Search style={{width: 240}} placeholder="请输入API名称关键字" onChange={handleSearch} />
+      </div>
+      <div className="sidebar-tree">
+        {store.treeData.length ? (
+          <Menu mode="inline" onSelect={handleSelect} selectedKeys={[store.apiId]} defaultOpenKeys={openKeys()}>
+            {renderTree(treeData)}
+          </Menu>
+        ) : null}
+      </div>
+    </div>
+  )
 }
 
-export default Sidebar
+export default observer(Sidebar)

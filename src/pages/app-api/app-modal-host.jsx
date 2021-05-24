@@ -9,7 +9,7 @@ const FormItem = Form.Item
 const AppHostModal = ({store}) => {
   const [form] = Form.useForm()
   useEffect(() => {
-    if (form) form.resetFields()
+    // if (form) form.resetFields()
   }, [])
 
   const [updateKey, setUpdateKey] = useState('')

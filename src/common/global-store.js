@@ -82,7 +82,7 @@ export class GlobalStore {
     this.filterWord = filterWord
   }
 
-  async loginInfo() {
+  loginInfo = async () => {
     if (this.userInfo) return
     const {success, content} = await io.loginInfo()
     if (success) {
@@ -115,8 +115,10 @@ export class GlobalStore {
     return {success, message}
   }
 
-  async logout() {
-    await io.logout()
+  logout = async () => {
+    const {success} = await io.logout()
+    console.log('success')
+    if (!success) return
     runInAction(() => {
       this.userInfo = null
     })

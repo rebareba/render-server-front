@@ -15,7 +15,7 @@ import homeStore from './home-store'
 const {Search} = Input
 
 const Home = function Login({globalStore}) {
-  const {appConfigList, value, add, appConfig, filterWord, editVisible, title, readVisible} = homeStore
+  const {appConfigList, value, isAdd, appConfig, filterWord, editVisible, title, readVisible} = homeStore
   const {userInfo} = globalStore
   useEffect(() => {
     homeStore.getList()
@@ -51,6 +51,7 @@ const Home = function Login({globalStore}) {
    * @param key
    */
   const actionChange = (type = 'edit', key) => {
+    console.log('type', type, key)
     if (type !== 'edit' && !(userInfo.permission & 2)) return
     let title = '新建'
     let appConfig = {
@@ -66,43 +67,41 @@ const Home = function Login({globalStore}) {
       appConfig = conf
       if (type === 'edit' && !(appConfig.permission & 4)) return
     }
-    let add = true
+    let isAdd = true
     if (type === 'edit' && appConfig) {
       title = `编辑--${appConfig.config.name} (${key})`
-      add = false
+      isAdd = false
     }
     homeStore.set({
       editVisible: true,
       appConfig,
       title,
       value: JSON.stringify(toJS(appConfig.config), null, 2),
-      add,
+      isAdd,
     })
   }
-  const handleSave = async (value) => {
+  // 处理编辑还是新建
+  const handleSave = async () => {
     try {
-      value = JSON.parse(value)
-      log('home value', value)
-      if (!value.name || !value.description) {
-        message.warn('配置填写不规范')
+      const newAppConfig = JSON.parse(value)
+      log('home value', newAppConfig)
+      if (!newAppConfig.name || !newAppConfig.description) {
+        message.warn('配置填写不规范, 必须添加name、 description 等')
         return
       }
       let success
-      if (add) {
-        success = await homeStore.add(value)
+      if (isAdd) {
+        success = await homeStore.add(newAppConfig)
       } else {
-        success = homeStore.edit(appConfig.key, value)
+        success = await homeStore.edit(appConfig.key, newAppConfig)
       }
       if (success) {
-        homeStore.setState({
-          editVisible: false,
-        })
+        homeStore.setValue('editVisible', false)
       }
     } catch (e) {
-      message.error(`配置填写不规范${e.message}`)
+      message.error(`配置填写不规范： ${e.message}`)
     }
   }
-
   const handleCancel = () => {
     homeStore.set({
       readVisible: false,
@@ -164,7 +163,7 @@ const Home = function Login({globalStore}) {
           column: 4,
         }}
         dataSource={appConfigList}
-        renderItem={(item: any) => (
+        renderItem={(item) => (
           <List.Item>
             <Card
               title={
@@ -201,9 +200,9 @@ const Home = function Login({globalStore}) {
                 >
                   编辑
                 </a>,
-                <a key="apis">
+                <span key="apis">
                   <Link to={`${config.pathPrefix}/app/${item.key}/apis/index`}>接口</Link>
-                </a>,
+                </span>,
                 <a
                   key="delete"
                   onClick={() => actionDelete(item.key)}

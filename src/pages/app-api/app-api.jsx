@@ -10,11 +10,13 @@ const pageKeys = ['index', 'new']
 const store = new AppApiStore()
 
 const AppApi = ({match}) => {
-  const {appKey, apiId} = match
+  const {appKey, apiId} = match.params
+  console.log('appKey, apiId', appKey, apiId)
   useEffect(() => {
+    console.log(' useEffect appKey, apiId', appKey, apiId)
     store.setValue('appKey', appKey)
     store.setValue('apiId', apiId)
-    store.getAppApiList()
+    store.getAppApiList(appKey)
     return () => {
       store.clean()
     }
