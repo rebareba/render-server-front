@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {observer} from 'mobx-react'
-import {PrismLight as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 // 设置高亮样式
 import {xonokai} from 'react-syntax-highlighter/dist/esm/styles/prism'
 // 设置高亮的语言

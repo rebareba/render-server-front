@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2021-05-24 14:12:26
+ * @LastEditTime: 2021-05-25 09:29:32
  * @Description:
  */
 
@@ -15,12 +15,10 @@ const apis = {
   },
 }
 
-const io = createIo(apis, 'home')
+const io = createIo(apis, 'plugin')
 
 class PluginStore {
   // 获取的全量的应用配置列表
-  appConfigList = []
-
   plugin = ''
 
   constructor() {

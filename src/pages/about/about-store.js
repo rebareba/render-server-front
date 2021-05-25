@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2021-05-24 17:52:49
+ * @LastEditTime: 2021-05-25 09:27:33
  * @Description:
  */
 
@@ -25,7 +25,7 @@ class AboutStore {
   }
 
   // 获取配置列表
-  async markdown(type = 'plugin') {
+  async markdown(type = 'about') {
     const {success, content} = await io.markdown({type})
     if (!success) return
     runInAction(() => {

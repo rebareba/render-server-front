@@ -22,6 +22,8 @@ import Home from '@pages/home'
 
 import About from '@pages/about'
 
+import Plugin from '@pages/plugin'
+
 import AppApi from '@pages/app-api'
 
 const stores = {globalStore: new GlobalStore()}

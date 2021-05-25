@@ -94,40 +94,38 @@ const ApiNewEdit = ({store}) => {
   }
 
   const handleSave = () => {
-    const {validateFieldsAndScroll} = form
-    validateFieldsAndScroll((errs, values) => {
-      if (!errs) {
-        const apiData = {
-          name: values.name,
-          path: values.path,
-          method: values.method,
-          cateCode: values.cateCode,
-          apiPrefix: store.newApiData.apiPrefix || '',
-          description: values.description || '',
-          params: store.newApiData.params,
-          body: store.newApiData.body || '{}',
-          detail: store.newApiData.detail || '',
-        }
-        if (apiData.apiPrefix && !/^\/[a-zA-Z0-9]+[^/]$/.test(apiData.apiPrefix)) {
-          message.error('接口前缀填写不规范')
-          return
-        }
+    const {validateFields} = form
+    validateFields((values) => {
+      const apiData = {
+        name: values.name,
+        path: values.path,
+        method: values.method,
+        cateCode: values.cateCode,
+        apiPrefix: store.newApiData.apiPrefix || '',
+        description: values.description || '',
+        params: store.newApiData.params,
+        body: store.newApiData.body || '{}',
+        detail: store.newApiData.detail || '',
+      }
+      if (apiData.apiPrefix && !/^\/[a-zA-Z0-9]+[^/]$/.test(apiData.apiPrefix)) {
+        message.error('接口前缀填写不规范')
+        return
+      }
 
-        if (apiData.method !== 'GET' || apiData.method !== 'HEAD') {
-          try {
-            const body = JSON.parse(apiData.body)
-            if (!_.isObject(body)) {
-              message.error('body填写不规范，不是JSON格式数据')
-              return
-            }
-          } catch (e) {
+      if (apiData.method !== 'GET' || apiData.method !== 'HEAD') {
+        try {
+          const body = JSON.parse(apiData.body)
+          if (!_.isObject(body)) {
             message.error('body填写不规范，不是JSON格式数据')
             return
           }
+        } catch (e) {
+          message.error('body填写不规范，不是JSON格式数据')
+          return
         }
-        store.saveApi(apiData)
       }
-    })
+      store.saveApi(apiData)
+    }).catch((err) => {})
   }
 
   const formItemLayout = {
@@ -150,11 +148,7 @@ const ApiNewEdit = ({store}) => {
           },
           value: item.name ? item.name : undefined,
         }
-        return (
-          <FormItem>
-            <Input {...props} />
-          </FormItem>
-        )
+        return <Input {...props} />
       },
     },
     {
@@ -305,7 +299,7 @@ const ApiNewEdit = ({store}) => {
                 label="HTTP方法"
                 {...{
                   rules: [{required: true, message: 'HTTP Method不可为空'}],
-                  initialValue: store.newApiData.method,
+                  initialValue: store.newApiData.method || 'GET',
                 }}
               >
                 <RadioGroup>
@@ -315,7 +309,6 @@ const ApiNewEdit = ({store}) => {
                   <Radio value="PUT">PUT</Radio>
                   <Radio value="HEAD">HEAD</Radio>
                 </RadioGroup>
-                ,
               </FormItem>
               <FormItem
                 name="cateCode"
