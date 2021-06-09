@@ -1,0 +1,10 @@
+{
+	"markdown": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": "\n## 插件开发\n\n插件存放在项目的 `plugin/` 目录下， 插件的key 就是文件名，比如`plugin/test.js` 的`key`就是`test`. 插件接收一个参数，必须有返回值`true`或`false`；\n插件不区分是页面渲染使用还是接口代理使用，需用户自己判断添加。\n\n返回值说明:\n\n- true 返回true的时候，程序会继续往下走，会走到下一个插件，或页面渲染、或接口代理， 一般这个插件不会给`ctx.body` 赋值。一般给`ctx.proxyData`或`ctx.renderData`赋值\n- false 一般插件这时候已经完成的请求处理，ctx.body 赋值了；比如登录、登录验证失败，重定向等。\n\n比如下面的`plugin/test.js`如下：\n\n```js\n'use strict';\n\nconst log = require('../common/log');\n\nmodule.exports = (options) => {\n  return async (ctx) => {\n    log.debug('plugin test options', options);\n    // 这个是接口代理数据\n    ctx.proxyData = options;\n    // 这个是模板注入数据\n    ctx.renderData = options;\n    return true;\n  };\n};\n```\n\n插件开发完成后放到 `plugin`目录下重启服务，并在接口代理或者页面渲染代理配置上插件即可使用：\n\n```json\n{\n  \"plugins\": [\n    {\n      \"key\": \"test\",\n      \"options\": {\n        \"tenantId\": 1,\n        \"productId\": 7,\n        \"userId\": 1\n      }\n    }\n  ]\n}\n```\n\n\n\n## 插件列表\n\n### 数据mock (mock)\n\n### ip白名单 （white_ip）\n\n\n\n### 微信网页登录 (wechat_login)\n\n```json\n{\n  \"key\": \"wechat_login\",\n  \"options\": {\n    \"isMock\": false,\n    \"mockContent\": {\n      \"openid\": \"x-wehchat-openid\"\n    },\n    \"sessionId\": \"wechat\",\n    \"cookieOptions\": {\n      \"maxAge\": 86400000,\n      \"path\": \"/\",\n      \"domain\": \"baidu.com.cn\",\n      \"overwrite\": true,\n      \"httpOnly\": true,\n      \"rolling\": true,\n      \"renew\": true\n    },\n    \"appId\": \"wxd7ab985cde7b886f\",\n    \"state\": \"state\",\n    \"scope\": \"snsapi_base\",\n    \"type\": \"proxy\",\n    \"url\": \"http://127.0.0.1/api/login\",\n    \"componentAppId\": \"如果是第登录获取code的配置\",\n  }\n}\n```\n\n- type proxy或render 使用的场景\n\n\n\n\n",
+			"message": ""
+		}
+	}
+}

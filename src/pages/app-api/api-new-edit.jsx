@@ -94,38 +94,40 @@ const ApiNewEdit = ({store}) => {
   }
 
   const handleSave = () => {
-    const {validateFields} = form
-    validateFields((values) => {
-      const apiData = {
-        name: values.name,
-        path: values.path,
-        method: values.method,
-        cateCode: values.cateCode,
-        apiPrefix: store.newApiData.apiPrefix || '',
-        description: values.description || '',
-        params: store.newApiData.params,
-        body: store.newApiData.body || '{}',
-        detail: store.newApiData.detail || '',
-      }
-      if (apiData.apiPrefix && !/^\/[a-zA-Z0-9]+[^/]$/.test(apiData.apiPrefix)) {
-        message.error('接口前缀填写不规范')
-        return
-      }
+    const {validateFields, getFieldsValue} = form
+    validateFields()
+      .then((values) => {
+        const apiData = {
+          name: values.name,
+          path: values.path,
+          method: values.method,
+          cateCode: values.cateCode,
+          apiPrefix: store.newApiData.apiPrefix || '',
+          description: values.description || '',
+          params: store.newApiData.params,
+          body: store.newApiData.body || '{}',
+          detail: store.newApiData.detail || '',
+        }
+        if (apiData.apiPrefix && !/^\/[a-zA-Z0-9]+[^/]$/.test(apiData.apiPrefix)) {
+          message.error('接口前缀填写不规范')
+          return
+        }
 
-      if (apiData.method !== 'GET' || apiData.method !== 'HEAD') {
-        try {
-          const body = JSON.parse(apiData.body)
-          if (!_.isObject(body)) {
+        if (apiData.method !== 'GET' || apiData.method !== 'HEAD') {
+          try {
+            const body = JSON.parse(apiData.body)
+            if (!_.isObject(body)) {
+              message.error('body填写不规范，不是JSON格式数据')
+              return
+            }
+          } catch (e) {
             message.error('body填写不规范，不是JSON格式数据')
             return
           }
-        } catch (e) {
-          message.error('body填写不规范，不是JSON格式数据')
-          return
         }
-      }
-      store.saveApi(apiData)
-    }).catch((err) => {})
+        store.saveApi(apiData)
+      })
+      .catch((err) => {})
   }
 
   const formItemLayout = {
@@ -137,7 +139,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '参数名称',
       dataIndex: 'name',
-      key: 'name',
       width: 200,
       render: (text, item) => {
         if (item.paramLocation === 'RouterParam') return <strong>{item.name}</strong>
@@ -154,7 +155,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '参数位置',
       dataIndex: 'paramLocation',
-      key: 'paramLocation',
       width: 150,
       render: (text, item) => {
         if (item.paramLocation === 'RouterParam') return <Input value={item.paramLocation} disabled />
@@ -177,7 +177,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '是否必传',
       dataIndex: 'isRequired',
-      key: 'isRequired',
       width: 100,
       render: (text, item) => {
         if (item.paramLocation === 'RouterParam') return <Checkbox checked disabled />
@@ -191,7 +190,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '示例值',
       dataIndex: 'value',
-      key: 'value',
       render: (value, item) => {
         const props = {
           placeholder: '填写示例值',
@@ -204,7 +202,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '描述说明',
       dataIndex: 'description',
-      key: 'description',
       render: (value, item) => {
         const props = {
           placeholder: '描述说明字段含义',
@@ -217,7 +214,6 @@ const ApiNewEdit = ({store}) => {
     {
       title: '操作',
       dataIndex: 'action',
-      key: 'action',
       width: 50,
       render: (value, item, index) => {
         if (item.paramLocation === 'RouterParam') return
@@ -233,6 +229,7 @@ const ApiNewEdit = ({store}) => {
     columns: paramsColumns,
     pagination: false,
     size: 'small',
+    rowKey: 'name',
     locale: {
       emptyText: <ErrorStatus tip="暂无数据" />,
     },
@@ -271,7 +268,7 @@ const ApiNewEdit = ({store}) => {
               >
                 <Input placeholder="请填写API功能描述" />
               </FormItem>
-              <FormItem {...formItemLayout} label="接口前缀" hasFeedback>
+              <FormItem {...formItemLayout} name="apiPrefix" label="接口前缀" hasFeedback>
                 <AutoComplete onChange={(value) => handleApiPrefixChange(value)} placeholder="填写接口前缀，必须/开头">
                   {appInfo.apiPrefiies.map((prefix) => (
                     <AutoComplete.Option key={prefix}>{prefix}</AutoComplete.Option>

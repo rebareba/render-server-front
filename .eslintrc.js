@@ -61,7 +61,7 @@ module.exports = {
   rules: {
     semi: 0,
     'no-unused-vars': [
-      1,
+      0,
       {
         vars: 'all',
         args: 'after-used',

@@ -1,27 +1,31 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {observer} from 'mobx-react'
-import CodeMirror from 'codemirror'
+import {Controlled as CodeMirror} from 'react-codemirror2'
 
 const CodeBoxEdit = ({value, width, onChange}) => {
-  const codeRef = React.createRef()
-
+  const [data, setData] = useState(value)
   useEffect(() => {
-    if (codeRef) {
-      const editor = CodeMirror.fromTextArea(codeRef.current, {
-        lineNumbers: true, // 是否显示行号
-        mode: {name: 'javascript', json: true}, // 默认脚本编码
-        lineWrapping: false, // 是否强制换行
-        readOnly: false,
-      })
-      editor.setSize('auto', width || 'auto') // 设置高度自适应
-      editor.on('change', (doc) => {
-        onChange(doc.getValue())
-      })
-    }
-  }, [])
+    console.log('CodeBoxEdit useEffect value', value)
+    setData(value)
+  }, [value])
   return (
     <div>
-      <textarea rows="3" ref={codeRef} defaultValue={value} />
+      <CodeMirror
+        value={data}
+        options={{
+          lineNumbers: true, // 是否显示行号
+          mode: {name: 'javascript', json: true}, // 默认脚本编码
+          lineWrapping: false, // 是否强制换行
+        }}
+        onBeforeChange={(editor, data, value) => {
+          // console.log('onBeforeChange', data, value)
+          setData(value)
+        }}
+        onChange={(editor, data, value) => {
+          // setData({value})
+          onChange(value)
+        }}
+      />
     </div>
   )
 }

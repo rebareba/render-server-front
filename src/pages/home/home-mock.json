@@ -1,26 +1,146 @@
 {
-  "login": {
+	"add": {
 		"failed": {
 			"success": false,
-			"code": "ERROR_PASS_ERROR",
+			"code": "ERROR_PARAMS",
 			"content": null,
-			"message": "账号或密码错误!"
+			"message": "请求参数错误: \"name\" is required"
 		},
 		"success": {
 			"success": true,
 			"code": 0,
 			"content": {
-				"name": "admin",
-				"nickname": "超级管理员",
-				"permission": 15
+				"key": "111",
+				"account": "admin",
+				"name": "管理后台模板",
+				"description": "描述",
+				"pageIndex": "/admin",
+				"viewRender": [
+					{
+						"paths": [
+							"/admin/(.*)",
+							"/admin"
+						],
+						"hosts": [],
+						"plugins": [],
+						"defaultData": {
+							"partials": {}
+						},
+						"viewType": "path",
+						"viewPath": "react-admin-starter/index.html",
+						"viewData": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Render-Server2</title>\n  <link href=\"/render-server/1.1.0/0.css\" rel=\"stylesheet\"><link href=\"/render-server/1.1.0/index.css\" rel=\"stylesheet\"></head>\n<script>\n</script>\n<body>\n<div id=\"root\" style=\"width: 100%; height: 100%;\"></div>\n<script type=\"text/javascript\" src=\"/render-server/1.1.0/vendor.js\"></script><script type=\"text/javascript\" src=\"/render-server/1.1.0/index.js\"></script></body>\n</html>"
+					}
+				],
+				"apiProxy": [],
+				"staticPrefix": []
 			},
 			"message": ""
+		}
+	},
+	"delete": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": [
+				{
+					"success": true,
+					"code": 0,
+					"content": {
+						"flag": true
+					},
+					"message": ""
+				}
+			],
+			"message": ""
 		},
-		"false": {
+		"failed": {
 			"success": false,
-			"code": "ERROR_PASS_ERROR",
+			"code": "NO_PERMISSION",
 			"content": null,
-			"message": "账号或密码错误!"
+			"message": "当前用户没有该权限"
+		}
+	},
+	"edit": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": [
+				{
+					"success": true,
+					"code": 0,
+					"content": {
+						"flag": true
+					},
+					"message": ""
+				}
+			],
+			"message": ""
+		}
+	},
+	"list": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": [
+				{
+					"key": "react-start-admin",
+					"permission": 15,
+					"config": {
+						"key": "react-start-admin",
+						"account": "admin",
+						"name": "管理后台模板",
+						"description": "描述",
+						"pageIndex": "/admin",
+						"viewRender": [
+							{
+								"paths": [
+									"/admin/(.*)",
+									"/admin"
+								],
+								"hosts": [],
+								"plugins": [],
+								"defaultData": {
+									"partials": {}
+								},
+								"viewType": "path",
+								"viewPath": "react-admin-starter/index.html",
+								"viewData": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Render-Server2</title>\n  <link href=\"/render-server/1.1.0/0.css\" rel=\"stylesheet\"><link href=\"/render-server/1.1.0/index.css\" rel=\"stylesheet\"></head>\n<script>\n</script>\n<body>\n<div id=\"root\" style=\"width: 100%; height: 100%;\"></div>\n<script type=\"text/javascript\" src=\"/render-server/1.1.0/vendor.js\"></script><script type=\"text/javascript\" src=\"/render-server/1.1.0/index.js\"></script></body>\n</html>"
+							}
+						],
+						"apiProxy": [],
+						"staticPrefix": []
+					}
+				},
+				{
+					"key": "render-server",
+					"permission": 15,
+					"config": {
+						"key": "render-server",
+						"account": "admin",
+						"name": "前端渲染服务的页面",
+						"description": "描述",
+						"viewRender": [
+							{
+								"paths": [
+									"/render-server/(.*)",
+									"/render-server"
+								],
+								"hosts": [],
+								"plugins": [],
+								"defaultData": {
+									"partials": {}
+								},
+								"viewType": "path",
+								"viewPath": "render-server/index.html",
+								"viewData": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Render-Server2</title>\n  <link href=\"/render-server/1.1.0/0.css\" rel=\"stylesheet\"><link href=\"/render-server/1.1.0/index.css\" rel=\"stylesheet\"></head>\n<script>\n</script>\n<body>\n<div id=\"root\" style=\"width: 100%; height: 100%;\"></div>\n<script type=\"text/javascript\" src=\"/render-server/1.1.0/vendor.js\"></script><script type=\"text/javascript\" src=\"/render-server/1.1.0/index.js\"></script></body>\n</html>"
+							}
+						],
+						"apiProxy": [],
+						"staticPrefix": []
+					}
+				}
+			],
+			"message": ""
 		}
 	}
 }

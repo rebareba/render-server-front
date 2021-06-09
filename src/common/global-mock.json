@@ -12,9 +12,7 @@
 			"content": {
 				"name": "admin",
 				"nickname": "超级管理员",
-				"permissions": {
-					"user": 15
-				}
+				"permission": 15
 			},
 			"message": ""
 		}
@@ -26,17 +24,23 @@
 			"content": {
 				"name": "admin",
 				"nickname": "超级管理员",
-				"permissions": {
-					"user": 15
-				}
+				"permission": 15
 			},
 			"message": ""
 		},
 		"failed": {
 			"success": false,
-			"code": "NEED_LOGIN",
+			"code": "ERROR_NEED_AUTH",
 			"content": null,
-			"message": "用户未登录，重新登录"
+			"message": "未登录！"
+		}
+	},
+	"logout": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": {},
+			"message": ""
 		}
 	}
 }

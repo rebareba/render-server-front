@@ -1,11 +1,165 @@
 {
-  "getAppApiList": {
-    "success": {"success":true,"code":0,"content":{"serviceCode":"trends_season2","serviceName":"时尚集团2期","data":[{"ctime":"2019-07-10 20:31:40","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"5bbfc04c0b0c4bfea87b76a3cbc6a85d","name":"设置用户角色和刊司品牌的数据权限（慎用_慎用）","authType":"none","version":"v1","path":"/users/:userId/roles","httpMethod":"PUT","serviceCode":"trends_season2","cateCode":"users","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"用户中心","modified":"N"},{"ctime":"2019-05-22 20:50:24","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"7b059534da364bda9fd48fff783e87ea","name":"期刊上新通知","authType":"none","version":"v1","path":"/notifications/magazine","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"notification","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"通知","modified":"N"},{"ctime":"2019-05-22 20:51:44","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"d7a42ecc530e40cc81fc2a110ed32033","name":"新媒体上新通知","authType":"none","version":"v1","path":"/notifications/media","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"notification","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"通知","modified":"N"},{"ctime":"2019-05-22 20:53:12","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"958cc2fb4c4b49418da5dd0988eb260f","name":"系统通知","authType":"none","version":"v1","path":"/notifications/system","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"notification","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"通知","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"f6bebc35b3ca4d8f930067e33e1a542f","name":"新媒体_音频视频操作数_加一","authType":"none","version":"v1","path":"/media/operation_times/:mediaId/increase","httpMethod":"PUT","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"0d15e326a030455b9e3e9ec6e705352d","name":"新媒体检索查看原文（浏览数）加一","authType":"none","version":"v1","path":"/media/article_view/:articleId/increase","httpMethod":"PUT","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"bbf8988014234020ae59ba71122281c2","name":"新媒体检索_图片","authType":"none","version":"v1","path":"/media/search/images","httpMethod":"POST","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"b1856e8144aa482bafa00f80d34205ae","name":"新媒体检索_音频","authType":"none","version":"v1","path":"/media/search/audios","httpMethod":"POST","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"5ba47ed70baf4d2b83de654c951481d2","name":"新媒体检索_视频","authType":"none","version":"v1","path":"/media/search/videos","httpMethod":"POST","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"f30c8afa4d474920af4361a09a6f89f0","name":"新媒体检索_文章","authType":"none","version":"v1","path":"/media/search/articles","httpMethod":"POST","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"a4f13b0f17a0457dbede56843777def1","name":"杂志统计_发展历史趋势图表","authType":"none","version":"v1","path":"/statistics/magazine/histories","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"statistics","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"资源统计","modified":"N"},{"ctime":"2019-05-24 19:52:50","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"190fb0e94cc04dcd95b6e0b747465b17","name":"新媒体-获取图片详情","authType":"none","version":"v1","path":"/media/images/:imageId","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"7a8dc5207dde4f928ec61fd6dcb8a7ab","name":"批量下载文章txt格式文件","authType":"none","version":"v1","path":"/media/bulk_download_txt_article","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"041e187d95e441ad9b04f5f0c796cbc4","name":"新媒体检索_文章_下载txt文件","authType":"none","version":"v1","path":"/media/download_txt_article/:articleId","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","modified":"N"},{"ctime":"2019-05-09 16:57:09","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"d735cd54089e472195b3db048d8e32c7","name":"杂志统计_总数","authType":"none","version":"v1","path":"/statistics/magazine/overview","httpMethod":"GET","serviceCode":"trends_season2","cateCode":"statistics","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"资源统计","modified":"N"}]}}
-  },
-  "getApiDetail": {
-    "success": {"success":true,"code":0,"content":{"ctime":"2019-05-09 16:57:08","mtime":"2020-06-23 14:55:57","modifierId":644,"creatorId":644,"apiId":"5ba47ed70baf4d2b83de654c951481d2","name":"新媒体检索_视频","authType":"none","version":"v1","path":"/media/search/videos","httpMethod":"POST","serviceCode":"trends_season2","cateCode":"media","mappingProtocol":"HTTP","modifyVersion":1592895357,"onlineVersion":1592895357,"isOnline":"Y","useMock":"N","isCached":"N","cachedTime":10000,"requestMode":"MAPPING","isOpen":0,"userApiPermission":"N","serviceName":"时尚集团2期","cateName":"新媒体检索","description":"新媒体检索_视频","mockContent":"{\n    \"code\": \"OK\",\n    \"success\": true,\n    \"message\": null,\n    \"content\": {\n        \"currentPage\": 1,\n        \"pageSize\": 2,\n        \"count\": 65,\n        \"data\": [\n            {\n                \"videoId\": \"201801023\",\n                \"title\": \"01023号\",\n                \"publication\": \"刊司品牌\",\n                \"mediaType\": 1,\n                \"createTime\": \"2018-06-10 15:43:00\",\n                \"operationTimes\": 45,\n                \"size\": 45,\n                \"topChannelValue\": \"1\",\n                \"topChannelName\": \"腾讯视频\",\n                \"channelName\": \"时尚家居\",\n                \"downloadUrl\":\"url\",\n                \"originVideoUrl\": \"url\"\n            }\n        ]\n    }\n}","servCreatorId":644,"requestMappingParam":{"requestParams":[],"httpParamMappings":[]},"proxyInfo":{"serviceHttpMethod":"POST","servicePath":"/media/search/videos","timeout":10000,"httpId":"nf3rGXPxjV","policy":"polling"},"bodyFormat":"JSON","bodyDescription":"{\n  \"keyword\": \"关键词\",\n  \"searchType\":\"title\",\n  \"publication\": [1,2,3],\n  \"topChannel\": [1,2,3],\n  \"mediaChannel\": [1,2,3],\n  \"mediaType\": [1,2],\n  \"startDate\": \"2018-08-25\",  \n  \"endDate\": \"2018-08-25\",   \n  \"currentPage\":1,   //必传\n  \"pageSize\": 5,     //必传\n  \"orderBy\":\"complainCountMin\",\n  \"orders\":\"desc/asc\"\n}","failResultSample":"{\n    \"code\": \"ERROR_PARAM_VALIDATE_FAILED\",\n    \"success\": false,\n    \"content\": null,\n    \"message\": \"child \\\"invalid\\\" fails because [\\\"invalid\\\" must be one of [Y], \\\"invalid\\\" must be one of [N]]\"\n}","resultSample":"{\n    \"code\": \"OK\",\n    \"success\": true,\n    \"message\": null,\n    \"content\": {\n        \"currentPage\": 1,\n        \"pageSize\": 2,\n        \"count\": 65,\n        \"data\": [\n            {\n                \"videoId\": \"201801023\",\n                \"title\": \"01023号\",\n                \"publication\": \"刊司品牌\",\n                \"mediaType\": 1,\n                \"createTime\": \"2018-06-10 15:43:00\",   //key 用于排序\n                \"operationTimes\": 45,                  //key 用于排序\n                \"size\": 45,\n                \"topChannelValue\": \"1\",\n                \"topChannelName\": \"腾讯视频\",\n                \"channelName\": \"时尚家居\",\n                \"downloadUrl\":\"url\",\n                \"originVideoUrl\": \"url\"\n            }\n        ]\n    }\n}","apps":[],"rateLimits":[],"monitors":[]}}
-  },
-  "getTestCaseList": {
-    "success": {"success":true,"code":0,"content":[]}
-  }
+	"getAppApiList": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": {
+				"hosts": [],
+				"categories": [
+					{
+						"cateCode": "default",
+						"name": "默认"
+					}
+				],
+				"apiPrefiies": [],
+				"ctime": "2021-05-24 21:49:44",
+				"mtime": "2021-05-24 21:49:44",
+				"apis": [],
+				"name": "管理后台模板",
+				"description": "描述",
+				"pageIndex": "/admin"
+			},
+			"message": ""
+		},
+		"failed": {
+			"success": false,
+			"code": "ERROR_DATA_NOT_FOUND",
+			"content": null,
+			"message": "数据没有找到!"
+		}
+	},
+	"getApiDetail": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": {
+				"ctime": "2019-05-09 16:57:08",
+				"mtime": "2020-06-23 14:55:57",
+				"modifierId": 644,
+				"creatorId": 644,
+				"apiId": "5ba47ed70baf4d2b83de654c951481d2",
+				"name": "新媒体检索_视频",
+				"authType": "none",
+				"version": "v1",
+				"path": "/media/search/videos",
+				"httpMethod": "POST",
+				"serviceCode": "trends_season2",
+				"cateCode": "media",
+				"mappingProtocol": "HTTP",
+				"modifyVersion": 1592895357,
+				"onlineVersion": 1592895357,
+				"isOnline": "Y",
+				"useMock": "N",
+				"isCached": "N",
+				"cachedTime": 10000,
+				"requestMode": "MAPPING",
+				"isOpen": 0,
+				"userApiPermission": "N",
+				"serviceName": "时尚集团2期",
+				"cateName": "新媒体检索",
+				"description": "新媒体检索_视频",
+				"mockContent": "{\n    \"code\": \"OK\",\n    \"success\": true,\n    \"message\": null,\n    \"content\": {\n        \"currentPage\": 1,\n        \"pageSize\": 2,\n        \"count\": 65,\n        \"data\": [\n            {\n                \"videoId\": \"201801023\",\n                \"title\": \"01023号\",\n                \"publication\": \"刊司品牌\",\n                \"mediaType\": 1,\n                \"createTime\": \"2018-06-10 15:43:00\",\n                \"operationTimes\": 45,\n                \"size\": 45,\n                \"topChannelValue\": \"1\",\n                \"topChannelName\": \"腾讯视频\",\n                \"channelName\": \"时尚家居\",\n                \"downloadUrl\":\"url\",\n                \"originVideoUrl\": \"url\"\n            }\n        ]\n    }\n}",
+				"servCreatorId": 644,
+				"requestMappingParam": {
+					"requestParams": [],
+					"httpParamMappings": []
+				},
+				"proxyInfo": {
+					"serviceHttpMethod": "POST",
+					"servicePath": "/media/search/videos",
+					"timeout": 10000,
+					"httpId": "nf3rGXPxjV",
+					"policy": "polling"
+				},
+				"bodyFormat": "JSON",
+				"bodyDescription": "{\n  \"keyword\": \"关键词\",\n  \"searchType\":\"title\",\n  \"publication\": [1,2,3],\n  \"topChannel\": [1,2,3],\n  \"mediaChannel\": [1,2,3],\n  \"mediaType\": [1,2],\n  \"startDate\": \"2018-08-25\",  \n  \"endDate\": \"2018-08-25\",   \n  \"currentPage\":1,   //必传\n  \"pageSize\": 5,     //必传\n  \"orderBy\":\"complainCountMin\",\n  \"orders\":\"desc/asc\"\n}",
+				"failResultSample": "{\n    \"code\": \"ERROR_PARAM_VALIDATE_FAILED\",\n    \"success\": false,\n    \"content\": null,\n    \"message\": \"child \\\"invalid\\\" fails because [\\\"invalid\\\" must be one of [Y], \\\"invalid\\\" must be one of [N]]\"\n}",
+				"resultSample": "{\n    \"code\": \"OK\",\n    \"success\": true,\n    \"message\": null,\n    \"content\": {\n        \"currentPage\": 1,\n        \"pageSize\": 2,\n        \"count\": 65,\n        \"data\": [\n            {\n                \"videoId\": \"201801023\",\n                \"title\": \"01023号\",\n                \"publication\": \"刊司品牌\",\n                \"mediaType\": 1,\n                \"createTime\": \"2018-06-10 15:43:00\",   //key 用于排序\n                \"operationTimes\": 45,                  //key 用于排序\n                \"size\": 45,\n                \"topChannelValue\": \"1\",\n                \"topChannelName\": \"腾讯视频\",\n                \"channelName\": \"时尚家居\",\n                \"downloadUrl\":\"url\",\n                \"originVideoUrl\": \"url\"\n            }\n        ]\n    }\n}",
+				"apps": [],
+				"rateLimits": [],
+				"monitors": []
+			}
+		}
+	},
+	"getTestCaseList": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": []
+		}
+	},
+	"addApi": {
+		"failed": {
+			"success": false,
+			"code": "ERROR_DATA_NOT_FOUND",
+			"content": null,
+			"message": "数据没有找到!"
+		}
+	},
+	"list": {
+		"success": {
+			"success": true,
+			"code": 0,
+			"content": [
+				{
+					"key": "react-start-admin",
+					"permission": 15,
+					"config": {
+						"key": "react-start-admin",
+						"account": "admin",
+						"name": "管理后台模板",
+						"description": "描述",
+						"pageIndex": "/admin",
+						"viewRender": [
+							{
+								"paths": [
+									"/admin/(.*)",
+									"/admin"
+								],
+								"hosts": [],
+								"plugins": [],
+								"defaultData": {
+									"partials": {}
+								},
+								"viewType": "path",
+								"viewPath": "react-admin-starter/index.html",
+								"viewData": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Render-Server2</title>\n  <link href=\"/render-server/1.1.0/0.css\" rel=\"stylesheet\"><link href=\"/render-server/1.1.0/index.css\" rel=\"stylesheet\"></head>\n<script>\n</script>\n<body>\n<div id=\"root\" style=\"width: 100%; height: 100%;\"></div>\n<script type=\"text/javascript\" src=\"/render-server/1.1.0/vendor.js\"></script><script type=\"text/javascript\" src=\"/render-server/1.1.0/index.js\"></script></body>\n</html>"
+							}
+						],
+						"apiProxy": [],
+						"staticPrefix": []
+					}
+				},
+				{
+					"key": "render-server",
+					"permission": 15,
+					"config": {
+						"key": "render-server",
+						"account": "admin",
+						"name": "前端渲染服务的页面",
+						"description": "描述",
+						"viewRender": [
+							{
+								"paths": [
+									"/render-server/(.*)",
+									"/render-server"
+								],
+								"hosts": [],
+								"plugins": [],
+								"defaultData": {
+									"partials": {}
+								},
+								"viewType": "path",
+								"viewPath": "render-server/index.html",
+								"viewData": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Render-Server2</title>\n  <link href=\"/render-server/1.1.0/0.css\" rel=\"stylesheet\"><link href=\"/render-server/1.1.0/index.css\" rel=\"stylesheet\"></head>\n<script>\n</script>\n<body>\n<div id=\"root\" style=\"width: 100%; height: 100%;\"></div>\n<script type=\"text/javascript\" src=\"/render-server/1.1.0/vendor.js\"></script><script type=\"text/javascript\" src=\"/render-server/1.1.0/index.js\"></script></body>\n</html>"
+							}
+						],
+						"apiProxy": [],
+						"staticPrefix": []
+					}
+				}
+			],
+			"message": ""
+		}
+	}
 }

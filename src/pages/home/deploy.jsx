@@ -23,27 +23,28 @@ const Deploy = ({children, rootPath, onUpload}) => {
   useEffect(() => {
     const DONE_STATUS = 'done'
     const isAllDone = fileList.every((item) => item.status === DONE_STATUS)
-    function checkRenderServerConfig(fileList) {
-      const RSC = 'render-server-config.json'
-      const file = fileList.find((item) => item.name.endsWith(RSC))
-      if (file) {
-        const reader = new FileReader()
-        reader.readAsText(file.originFileObj, 'UTF-8')
-        reader.onload = () => {
-          const res = JSON.parse(reader.result)
-          if (!file.name.startsWith(res.key)) {
-            message.warn('render-server-config.json异常：key与资源前缀不一致')
-            return
-          }
-          if (onUpload) onUpload(res)
-        }
-      }
-    }
+    // 这里是处理更新render-server本身的配置使用特殊约定文件名，不需要
+    // function checkRenderServerConfig(fileList) {
+    //   const RSC = 'render-server-config.json'
+    //   const file = fileList.find((item) => item.name.endsWith(RSC))
+    //   if (file) {
+    //     const reader = new FileReader()
+    //     reader.readAsText(file.originFileObj, 'UTF-8')
+    //     reader.onload = () => {
+    //       const res = JSON.parse(reader.result)
+    //       if (!file.name.startsWith(res.key)) {
+    //         message.warn('render-server-config.json异常：key与资源前缀不一致')
+    //         return
+    //       }
+    //       if (onUpload) onUpload(res)
+    //     }
+    //   }
+    // }
     if (fileList.length === allFilsCount.current && isAllDone) {
       message.success('全部上传成功')
       allFilsCount.current = -1
       setRenderKey((key) => key + 1)
-      checkRenderServerConfig(fileList)
+      // checkRenderServerConfig(fileList)
     }
   }, [fileList, allFilsCount])
 
@@ -66,6 +67,7 @@ const Deploy = ({children, rootPath, onUpload}) => {
           return Promise.resolve()
         }}
         onChange={(info) => {
+          // 这里有文件上传状态的更新
           setFileList(info.fileList)
         }}
         // transformFile={(file) => {
