@@ -69,6 +69,7 @@ const Home = function Login({globalStore}) {
         type: 'edit',
         loading: false,
         value: JSON.stringify(toJS(appConfig.config), null, 2),
+        key: appConfig.key,
       })
     }
     if (type === 'delete' && appConfig.permission & 8) {

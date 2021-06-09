@@ -1,7 +1,7 @@
 /*
  * @Author: changfeng
  * @LastEditors: changfeng
- * @LastEditTime: 2021-06-09 16:02:55
+ * @LastEditTime: 2021-06-09 17:29:15
  * @Description: 配置的处理， 新建项目这些
  */
 import {createIo} from '@common/create-io'
@@ -119,7 +119,7 @@ class HomeStore {
       if (this.modalData.type === 'add') {
         retData = await io.add(appConfig)
       } else {
-        retData = await io.add({config: appConfig, key: this.modalData.key})
+        retData = await io.edit({config: appConfig, key: this.modalData.key})
       }
       this.modalData.loading = false
       if (!retData.success) return
