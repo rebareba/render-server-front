@@ -15,9 +15,10 @@ const Frame = ({globalStore, children}) => {
   const location = useLocation()
   useEffect(() => {
     globalStore.loginInfo()
-    const nameArray = location.pathname.split('/')
-    setSelectedKeys([nameArray[nameArray.length - 1]])
   }, [])
+  useEffect(() => {
+    setSelectedKeys([location.pathname.replace(config.pathPrefix, '').split('/')[1] || '/'])
+  }, [location])
   const {userInfo} = globalStore
   if (userInfo) {
     return (
@@ -29,12 +30,7 @@ const Frame = ({globalStore, children}) => {
 
           <div className="fb1 fbh fbac fbjb">
             <div className="fs26 fw500">前端渲染服务管理</div>
-            <Menu
-              mode="horizontal"
-              defaultSelectedKeys={selectedKeys}
-              style={{lineHeight: '64px'}}
-              className="fb1 ml10"
-            >
+            <Menu mode="horizontal" selectedKeys={selectedKeys} style={{lineHeight: '64px'}} className="fb1 ml10">
               <Menu.Item key="home">
                 <Link to={`${config.pathPrefix}/home`}>首页</Link>
               </Menu.Item>
